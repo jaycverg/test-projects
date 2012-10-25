@@ -1,0 +1,8 @@
+.data-table {
+    border: solid 1px #ccc;
+}
+
+.data-table thead td, 
+.data-table thead th {
+    background: #bbb;
+}

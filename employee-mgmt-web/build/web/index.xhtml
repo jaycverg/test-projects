@@ -1,0 +1,73 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="layouts/master.xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.prime.com.tr/ui">
+
+    <ui:define name="title">Customer Management</ui:define>
+
+    <ui:define name="content">
+
+        <h:form>
+            <p:toolbar>
+                <p:toolbarGroup align="left">
+                    <p:commandButton value="Add" action="#{employeeFormBean.add}" 
+                                     oncomplete="customerDialog.show()"
+                                     update=":customerForm"/>
+                    <p:commandButton value="Delete"/>
+                </p:toolbarGroup>
+            </p:toolbar>
+        </h:form>
+
+        <p:dialog widgetVar="customerDialog" 
+                  header="New Customer Information"
+                  modal="true" resizable="false" position="center center">
+            <h:form id="customerForm">
+                <ui:include src="new-customer.xhtml" />
+                <p:commandButton value="Save" action="#{employeeFormBean.save}" 
+                                 oncomplete="if(!args.validationFailed) customerDialog.hide()"
+                                 update="customerForm, :empListForm:empList"/>
+                <p:commandButton value="Cancel" onclick="customerDialog.hide()"/>
+            </h:form>
+        </p:dialog>
+
+        <br/>
+        <h:form id="empListForm">
+            <p:dataTable id="empList" value="#{employeeListModelBean}" var="employee"
+                         paginator="true" rows="10" 
+                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"  
+                         rowsPerPageTemplate="5,10,15" lazy="true">
+
+                <p:column headerText="Last Name" sortBy="#{employee.lastName}">
+                    #{employee.lastName}
+                </p:column>
+                <p:column headerText="First Name" sortBy="#{employee.firstName}">
+                    #{employee.firstName}
+                </p:column>
+                <p:column headerText="Middle Name">
+                    #{employee.middleName}
+                </p:column>
+                <p:column headerText="Address">
+                    #{employee.address}
+                </p:column>
+                <p:column headerText="Contact No.">
+                    #{employee.contactNumber}
+                </p:column>
+                <p:column style="text-align: center;">
+                    <p:commandLink value="Remove" action="#{employeeFormBean.remove(employee)}"
+                                   onclick="if(!confirm('Are you sure you want to delete this entry?')) return false;"
+                                   update="empListForm"/>
+                    <span> | </span>
+                    <p:commandLink value="Edit" action="#{employeeFormBean.edit(employee)}"
+                                   oncomplete="customerDialog.show()"
+                                   update=":customerForm"/>
+                </p:column>
+
+            </p:dataTable>
+        </h:form>
+        
+    </ui:define>
+
+</ui:composition>
+
