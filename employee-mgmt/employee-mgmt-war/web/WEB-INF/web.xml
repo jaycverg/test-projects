@@ -4,21 +4,6 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 
-             
-    <data-source>
-        <name>java:app/testDS</name>
-        <class-name>org.postgresql.Driver</class-name>
-        <server-name>localhost</server-name>
-        <port-number>5432</port-number>
-        <database-name>testdb</database-name>
-        <user>postgres</user>
-        <password>56CatapulT78</password>
-        <property>
-            <name>url</name>
-            <value>jdbc:postgresql://localhost:5432/testdb</value>
-        </property>
-    </data-source>
-             
     <context-param>
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>

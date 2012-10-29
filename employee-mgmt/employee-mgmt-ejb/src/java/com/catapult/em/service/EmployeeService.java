@@ -1,10 +1,13 @@
 package com.catapult.em.service;
 
 import com.catapult.em.model.Employee;
+import com.catapult.em.util.CollectionUtil;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.ejb.Local;
+import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -17,7 +20,8 @@ import javax.persistence.Query;
 
 @Stateless
 @Local(EmployeeServiceLocal.class)
-public class EmployeeService implements EmployeeServiceLocal
+@Remote(EmployeeServiceRemote.class)
+public class EmployeeService implements EmployeeServiceLocal, EmployeeServiceRemote
 {
     @PersistenceContext
     private EntityManager em;
@@ -31,7 +35,7 @@ public class EmployeeService implements EmployeeServiceLocal
     }
 
     @Override
-    public Employee read(String id)
+    public Employee read(long id)
     {
         return em.find(Employee.class, id);
     }
@@ -89,6 +93,36 @@ public class EmployeeService implements EmployeeServiceLocal
         
         if( start >= 0 ) qry.setFirstResult(start);
         if( limit > -1 ) qry.setMaxResults(limit);
+        
+        return qry.getResultList();
+    }
+
+    @Override
+    public List<Employee> find(String lastName, String firstName)
+    {
+        return find(lastName, firstName, 50);
+    }
+
+    @Override
+    public List<Employee> find(String lastName, String firstName, int maxResults)
+    {
+        StringBuilder buff = new StringBuilder();
+        buff.append("select o from Employee o");
+        
+        List cond = new ArrayList();
+        if( lastName != null )  cond.add("lastName like :lastName");
+        if( firstName != null ) cond.add("firstName like :firstName");
+        
+        if( cond.size() > 0 ){
+            buff.append(" where ");
+            buff.append( CollectionUtil.join(cond, " and "));
+        }
+        
+        Query qry = em.createQuery(buff.toString());
+        qry.setParameter("lastName", lastName+"%");
+        qry.setParameter("firstName", firstName+"%");
+        
+        if( maxResults > 0 ) qry.setMaxResults(maxResults);
         
         return qry.getResultList();
     }

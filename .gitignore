@@ -7,3 +7,6 @@
 /employee-mgmt/build/
 /employee-mgmt/employee-mgmt-war/dist/
 /employee-mgmt/dist/
+/employee-mgmt-client/nbproject/private/
+/employee-mgmt-client/build/
+/employee-mgmt-client/dist/

@@ -14,7 +14,7 @@ public interface EmployeeServiceLocal
 
     Employee create(Employee emp);
 
-    Employee read(String id);
+    Employee read(long id);
 
     Employee update(Employee emp);
 
@@ -23,6 +23,10 @@ public interface EmployeeServiceLocal
     void delete(List<String> ids);
 
     List<Employee> getList(Map param);
+
+    List<Employee> find(String lastname, String firstname);
+
+    List<Employee> find(String lastname, String firstname, int maxResults);
 
     long getRowCount();
 }
