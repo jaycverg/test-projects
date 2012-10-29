@@ -13,5 +13,6 @@ public class BeanHelper
     public static Object getProperty(Object bean, String property)
     {
         Class c = bean.getClass();
+        Method m = c.getMethod()
     }
 }
