@@ -119,8 +119,8 @@ public class EmployeeService implements EmployeeServiceLocal, EmployeeServiceRem
         }
         
         Query qry = em.createQuery(buff.toString());
-        qry.setParameter("lastName", lastName+"%");
-        qry.setParameter("firstName", firstName+"%");
+        if( lastName != null )  qry.setParameter("lastName", lastName+"%");
+        if( firstName != null ) qry.setParameter("firstName", firstName+"%");
         
         if( maxResults > 0 ) qry.setMaxResults(maxResults);
         

@@ -13,8 +13,8 @@ public class EmployeeListPage extends javax.swing.JPanel
     {
         initComponents();
         tableModel = new EmployeeTableModel();
-        tableModel.load();
         jtEmployeeList.setModel(tableModel);
+        tableModel.load();
     }
 
     /**

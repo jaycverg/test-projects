@@ -12,19 +12,20 @@ import javax.swing.table.DefaultTableModel;
  */
 public class EmployeeTableModel extends DefaultTableModel
 {
+
     private EmployeeServiceRemote svc;
     private List<Employee> employees;
     private List<String> columns;
-    
-    
-    public void load() {
-        if( svc == null ) {
+
+    public void load()
+    {
+        if (svc == null) {
             svc = (EmployeeServiceRemote) RemoteServiceLoader.load(EmployeeServiceRemote.class);
             columns = new ArrayList();
             columns.add("lastName");
             columns.add("firstName");
         }
-        
+
         employees = svc.getList(null);
         fireTableDataChanged();
     }
@@ -38,7 +39,14 @@ public class EmployeeTableModel extends DefaultTableModel
     @Override
     public String getColumnName(int i)
     {
-        return super.getColumnName(i);
+        return columns.get(i);
     }
-    
+
+    @Override
+    public Object getValueAt(int row, int col)
+    {
+        Employee emp = employees.get(row);
+        String colname = columns.get(col);
+        
+    }
 }
