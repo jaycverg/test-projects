@@ -18,9 +18,11 @@ public interface EmployeeServiceLocal
 
     Employee update(Employee emp);
 
-    void delete(Employee emp);
+    void remove(long id);
 
-    void delete(List<String> ids);
+    void removeAll(List<Long> ids);
+
+    List<Employee> getList();
 
     List<Employee> getList(Map param);
 

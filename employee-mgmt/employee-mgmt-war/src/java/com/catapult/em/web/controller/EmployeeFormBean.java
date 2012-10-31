@@ -3,8 +3,6 @@ package com.catapult.em.web.controller;
 import com.catapult.em.model.Employee;
 import com.catapult.em.service.EmployeeServiceLocal;
 import java.io.Serializable;
-import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -51,7 +49,7 @@ public class EmployeeFormBean implements Serializable
     
     public void remove(Employee emp) 
     {
-        svc.delete(emp);
+        svc.remove(emp.getId());
     }
         
     //<editor-fold defaultstate="collapsed" desc=" getters / setters ">

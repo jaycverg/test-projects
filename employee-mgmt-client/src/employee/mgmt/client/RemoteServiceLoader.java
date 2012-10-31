@@ -17,12 +17,12 @@ public class RemoteServiceLoader
 
     private static RemoteServiceLoader loader;
 
-    public static Object load(Class service)
+    public static <T> T load(Class remoteProxyClass)
     {
         if (loader == null) {
             loader = new RemoteServiceLoader();
         }
-        return loader.loadService(service);
+        return (T) loader.loadService(remoteProxyClass);
     }
     
     
@@ -41,10 +41,10 @@ public class RemoteServiceLoader
         }
     }
 
-    Object loadService(Class service)
+    Object loadService(Class remoteProxyClass)
     {
         try {
-            return ctx.lookup(service.getName());
+            return ctx.lookup(remoteProxyClass.getName());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

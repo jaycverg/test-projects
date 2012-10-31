@@ -48,20 +48,26 @@ public class EmployeeService implements EmployeeServiceLocal, EmployeeServiceRem
     }
 
     @Override
-    public void delete(Employee emp)
+    public void remove(long id)
     {
-        //em.remove(emp); -- object is detached
+        //em.removeAll(emp); -- object is detached
         em.createQuery("delete from Employee where id=:id")
-          .setParameter("id", emp.getId())
+          .setParameter("id", id)
           .executeUpdate();
     }
     
     @Override
-    public void delete(List<String> ids)
+    public void removeAll(List<Long> ids)
     {
         em.createQuery("delete from Employee where id in :idList")
           .setParameter("idList", ids)
           .executeUpdate();
+    }
+    
+    @Override
+    public List<Employee> getList()
+    {
+        return getList(null);
     }
 
     @Override

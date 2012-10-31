@@ -13,8 +13,8 @@ public class EmployeeListPage extends javax.swing.JPanel
     {
         initComponents();
         tableModel = new EmployeeTableModel();
-        jtEmployeeList.setModel(tableModel);
         tableModel.load();
+        jtEmployeeList.setModel(tableModel);
     }
 
     /**
@@ -31,7 +31,6 @@ public class EmployeeListPage extends javax.swing.JPanel
         jScrollPane1 = new javax.swing.JScrollPane();
         jtEmployeeList = new javax.swing.JTable();
 
-        jToolBar1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
 
@@ -67,7 +66,7 @@ public class EmployeeListPage extends javax.swing.JPanel
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables

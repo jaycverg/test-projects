@@ -4,13 +4,14 @@ import com.catapult.em.model.Employee;
 import com.catapult.em.service.EmployeeServiceRemote;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.table.AbstractTableModel;
+import org.apache.commons.beanutils.PropertyUtils;
 
 /**
  *
  * @author jvergara
  */
-public class EmployeeTableModel extends DefaultTableModel
+public class EmployeeTableModel extends AbstractTableModel
 {
 
     private EmployeeServiceRemote svc;
@@ -20,7 +21,7 @@ public class EmployeeTableModel extends DefaultTableModel
     public void load()
     {
         if (svc == null) {
-            svc = (EmployeeServiceRemote) RemoteServiceLoader.load(EmployeeServiceRemote.class);
+            svc = RemoteServiceLoader.load(EmployeeServiceRemote.class);
             columns = new ArrayList();
             columns.add("lastName");
             columns.add("firstName");
@@ -37,6 +38,12 @@ public class EmployeeTableModel extends DefaultTableModel
     }
 
     @Override
+    public int getColumnCount()
+    {
+        return columns != null ? columns.size() : 0;
+    }
+
+    @Override
     public String getColumnName(int i)
     {
         return columns.get(i);
@@ -45,8 +52,12 @@ public class EmployeeTableModel extends DefaultTableModel
     @Override
     public Object getValueAt(int row, int col)
     {
-        Employee emp = employees.get(row);
-        String colname = columns.get(col);
-        
+        try {
+            Employee emp = employees.get(row);
+            String colname = columns.get(col);
+            return PropertyUtils.getNestedProperty(emp, colname);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
