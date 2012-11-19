@@ -3,6 +3,7 @@ package com.catapult.em.web.controller;
 import com.catapult.em.model.Employee;
 import com.catapult.em.service.EmployeeServiceLocal;
 import java.io.Serializable;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -16,7 +17,7 @@ import javax.persistence.Transient;
 @ViewScoped
 public class EmployeeFormBean implements Serializable
 {
-    @EJB(name = "EmployeeService")
+    @EJB
     @Transient
     private EmployeeServiceLocal svc;
     
@@ -61,6 +62,11 @@ public class EmployeeFormBean implements Serializable
     public void setEmployee(Employee employee)
     {
         this.employee = employee;
+    }
+    
+    public List<Employee> getList()
+    {
+        return svc.getList();
     }
     //</editor-fold>
 

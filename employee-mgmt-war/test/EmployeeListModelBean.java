@@ -21,7 +21,7 @@ import org.primefaces.model.SortOrder;
 @ViewScoped
 public class EmployeeListModelBean extends LazyDataModel<Employee>
 {
-    @EJB(name = "EmployeeService")
+    @EJB
     @Transient
     private EmployeeServiceLocal svc;
     

@@ -7,14 +7,9 @@ package employee.mgmt.client;
 public class EmployeeListPage extends javax.swing.JPanel
 {
 
-    private EmployeeTableModel tableModel;
-
     public EmployeeListPage()
     {
         initComponents();
-        tableModel = new EmployeeTableModel();
-        tableModel.load();
-        jtEmployeeList.setModel(tableModel);
     }
 
     /**
@@ -24,7 +19,8 @@ public class EmployeeListPage extends javax.swing.JPanel
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jToolBar1 = new javax.swing.JToolBar();
         btnAdd = new javax.swing.JButton();
@@ -35,23 +31,28 @@ public class EmployeeListPage extends javax.swing.JPanel
         jToolBar1.setRollover(true);
 
         btnAdd.setMnemonic('a');
-        btnAdd.setText("Add");
+        btnAdd.setText("+Add");
         btnAdd.setFocusable(false);
         btnAdd.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAdd.setName("add"); // NOI18N
         btnAdd.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(btnAdd);
 
         jtEmployeeList.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+            new Object [][]
+            {
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null}
             },
-            new String [] {
+            new String []
+            {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jtEmployeeList.setName("tableModel"); // NOI18N
+        jtEmployeeList.setRowHeight(20);
         jScrollPane1.setViewportView(jtEmployeeList);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
