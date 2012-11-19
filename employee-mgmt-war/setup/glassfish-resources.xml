@@ -39,7 +39,8 @@
             
         <property name="URL" value="jdbc:postgresql://localhost/testdb"/>
         <property name="User" value="postgres"/>
-        <property name="Password" value="12345"/>
+        <property name="Password" value="Change1234"/>
+        <!--property name="Password" value="12345"/-->
         <!--property name="Password" value="56CatapulT78"/-->
         <property name="DatabaseName" value="testdb"/>
     </jdbc-connection-pool>

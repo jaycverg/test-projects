@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project name="deployer" default="deploy" basedir="../">
-    <property name="server" value="D:\Applications\glassfish-3.1.2\glassfish\domains\domain1\autodeploy"/>
-    <target name="deploy">
-        <copy file="dist/employee-mgmt-war.war" todir="${server}/" overwrite="true" verbose="true"/>
-    </target>
-</project>
