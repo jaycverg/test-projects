@@ -5,6 +5,8 @@ import com.catapult.em.service.EmployeeServiceLocal;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.jws.WebMethod;
+import javax.jws.WebParam;
 import javax.jws.WebService;
 
 /*
@@ -23,13 +25,17 @@ public class EmployeeWS implements EmployeeWSLocal
     private EmployeeServiceLocal svc;
 
     @Override
-    public Employee read(long id)
+    @WebMethod(operationName="read")
+    public Employee read(@WebParam(name="id") long id)
     {
         return svc.read(id);
     }
 
     @Override
-    public List<Employee> find(String lastName, String firstName)
+    @WebMethod(operationName="find")
+    public List<Employee> find(
+            @WebParam(name="lastName") String lastName,
+            @WebParam(name="firstName") String firstName)
     {
         return svc.find(lastName, firstName);
     }
